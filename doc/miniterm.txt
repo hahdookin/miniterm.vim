@@ -1,0 +1,110 @@
+*miniterm.txt* simple terminal manager written in Vim9 script
+
+                       _       _ _                       ~
+             _ __ ___ (_)_ __ (_) |_ ___ _ __ _ __ ___   ~
+            | '_ ` _ \| | '_ \| | __/ _ \ '__| '_ ` _ \  ~
+            | | | | | | | | | | | ||  __/ |  | | | | | | ~
+            |_| |_| |_|_|_| |_|_|\__\___|_|  |_| |_| |_| ~
+
+          Simple terminal manager written in Vim9 script.
+      Includes toggle window support, multiple terminals, etc.
+
+====================================================================
+CONTENTS                                            *MinitermContents*
+
+    1. Intro ................ |Miniterm|
+    2. Usage ................ |MinitermUsage|
+        2.1. Quickstart
+        2.2. Mappings
+        2.3. Commands
+    3. About ................ MinitermAbout
+
+====================================================================
+1. Intro                                                    *Miniterm*
+
+miniterm.vim is a simple terminal manager written in Vim9 script
+that supports multiple terminals and a togglable terminal window.
+
+miniterm.vim uses the concept of a current terminal. The last
+terminal that was opened will be the target of commands that act on
+a single terminal, such as |:TerminalDelete| and |:TerminalToggle|.
+Using |:TerminalList| will show which terminal is active.
+
+====================================================================
+2. Usage                                               *MinitermUsage*
+
+--------------------------------------------------------------------
+2.1. Quickstart                                   *MinitermQuickstart*
+
+To begin using miniterm.vim, press <leader>tt to create a terminal.
+Pressing <leader>tt while the terminal window is open will close it.
+
+Pressing <leader>tn will create a new terminal and open it. Press
+<leader>th or <leader>tl to cycle through terminals.
+
+Press <leader>td to delete the current terminal. Pressing <leader>tq
+will delete all terminals.
+
+Use the |:TerminalList| command to view the terminals list.
+
+--------------------------------------------------------------------
+2.2. Mappings                                       *MinitermMappings*
+
+<leader>tt ................ Toggle current terminal window on/off
+<leader>tn ................ Create new current terminal
+<leader>th ................ Make previous terminal current
+<leader>tl ................ Make next terminal current
+<leader>td ................ Delete current terminal
+<leader>tq ................ Delete all terminals
+
+Note: All mappings are for Normal mode and Terminal mode.
+
+--------------------------------------------------------------------
+2.3. Commands                                       *MinitermCommands*
+
+|:TerminalToggle|
+    Toggles the terminal window open/closed. If there are no
+    terminals, this will create a new terminal and open it.
+    Mapped to: <leader>tt
+
+|:TerminalNew|
+    Creates a new terminal window, sets it as current, and opens it.
+    Mapped to: <leader>tn
+
+|:TerminalNext|
+    Sets the next terminal in the terminal list to the current. Will
+    open the terminal window if its closed.
+    Mapped to: <leader>tl
+
+|:TerminalPrev|
+    Sets the previous terminal in the terminal list to the current.
+    Will open the terminal window if its closed.
+    Mapped to: <leader>th
+
+|:TerminalDelete|
+    Deletes the buffer associated with the current terminal and
+    remove it from the terminal list. This will also be called when
+    the terminal is deleted with |:bdelete| or |:bwipeout|. Sets the
+    current terminal to the first in the terminal list.
+    Mapped to: <leader>td
+
+|:TerminalDeleteAll|
+    Delete all buffers associated with miniterm.vim and clear the
+    terminal list.
+    Mapped to: <leader>tq
+
+
+====================================================================
+3. About                                               *MinitermAbout*
+
+Christopher Pane, a.k.a. hahdookin, is the author of this plugin. He
+can be reached at:
+
+    * Email ............. ChrisPaneCS@gmail.com
+    * Website ........... https://chrispane.dev
+
+This plugin is one part of the mission to achieve the most with the
+least in terms of Vim plugins.
+
+--------------------------------------------------------------------
+ vim:tw=68:ts=8:ft=help:noet:nospell
