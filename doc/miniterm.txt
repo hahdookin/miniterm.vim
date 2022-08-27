@@ -1,4 +1,4 @@
-*miniterm.txt* simple terminal manager written in Vim9 script
+*miniterm.txt* Simple terminal manager written in Vim9 script
 
                        _       _ _                       ~
              _ __ ___ (_)_ __ (_) |_ ___ _ __ _ __ ___   ~
@@ -14,10 +14,10 @@ CONTENTS                                            *MinitermContents*
 
     1. Intro ................ |Miniterm|
     2. Usage ................ |MinitermUsage|
-        2.1. Quickstart
-        2.2. Mappings
-        2.3. Commands
-    3. About ................ MinitermAbout
+        2.1. Quickstart ..... |MinitermQuickstart|
+        2.2. Mappings ....... |MinitermMappings|
+        2.3. Commands ....... |MinitermCommands|
+    3. About ................ |MinitermAbout|
 
 ====================================================================
 1. Intro                                                    *Miniterm*
@@ -27,8 +27,8 @@ that supports multiple terminals and a togglable terminal window.
 
 miniterm.vim uses the concept of a current terminal. The last
 terminal that was opened will be the target of commands that act on
-a single terminal, such as |:TerminalDelete| and |:TerminalToggle|.
-Using |:TerminalList| will show which terminal is active.
+a single terminal, such as |:MinitermDelete| and |:MinitermToggle|.
+Using |:MinitermList| will show which terminal is active.
 
 ====================================================================
 2. Usage                                               *MinitermUsage*
@@ -45,7 +45,7 @@ Pressing <leader>tn will create a new terminal and open it. Press
 Press <leader>td to delete the current terminal. Pressing <leader>tq
 will delete all terminals.
 
-Use the |:TerminalList| command to view the terminals list.
+Use the |:MinitermList| command to view the terminals list.
 
 --------------------------------------------------------------------
 2.2. Mappings                                       *MinitermMappings*
@@ -62,33 +62,33 @@ Note: All mappings are for Normal mode and Terminal mode.
 --------------------------------------------------------------------
 2.3. Commands                                       *MinitermCommands*
 
-|:TerminalToggle|
+|:MinitermToggle|
     Toggles the terminal window open/closed. If there are no
     terminals, this will create a new terminal and open it.
     Mapped to: <leader>tt
 
-|:TerminalNew|
+|:MinitermNew|
     Creates a new terminal window, sets it as current, and opens it.
     Mapped to: <leader>tn
 
-|:TerminalNext|
+|:MinitermNext|
     Sets the next terminal in the terminal list to the current. Will
     open the terminal window if its closed.
     Mapped to: <leader>tl
 
-|:TerminalPrev|
+|:MinitermPrev|
     Sets the previous terminal in the terminal list to the current.
     Will open the terminal window if its closed.
     Mapped to: <leader>th
 
-|:TerminalDelete|
+|:MinitermDelete|
     Deletes the buffer associated with the current terminal and
     remove it from the terminal list. This will also be called when
     the terminal is deleted with |:bdelete| or |:bwipeout|. Sets the
     current terminal to the first in the terminal list.
     Mapped to: <leader>td
 
-|:TerminalDeleteAll|
+|:MinitermDeleteAll|
     Delete all buffers associated with miniterm.vim and clear the
     terminal list.
     Mapped to: <leader>tq

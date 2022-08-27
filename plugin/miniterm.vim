@@ -245,19 +245,19 @@ def g:GetManager(): dict<any>
 enddef
 TerminalMap("<leader>vv", ":echo GetManager().terminals<CR>") # DEBUG
 
-command! TerminalToggle     manager.ToggleTerminal() | g:AttachWipeoutHandler(manager.current)
-command! TerminalNew        manager.NewTerminal() | g:AttachWipeoutHandler(manager.current)
-command! TerminalNext       manager.OffsetTerminal(1)
-command! TerminalPrev       manager.OffsetTerminal(-1)
-command! TerminalDeleteAll  manager.DeleteAll()
-command! TerminalDelete     manager.DeleteCurrent()
+command! MinitermToggle     manager.ToggleTerminal() | g:AttachWipeoutHandler(manager.current)
+command! MinitermNew        manager.NewTerminal() | g:AttachWipeoutHandler(manager.current)
+command! MinitermNext       manager.OffsetTerminal(1)
+command! MinitermPrev       manager.OffsetTerminal(-1)
+command! MinitermDeleteAll  manager.DeleteAll()
+command! MinitermDelete     manager.DeleteCurrent()
 
-command! TerminalList       manager.ListTerminals()
+command! MinitermList       manager.ListTerminals()
 
-TerminalMap("<leader>tt", ":TerminalToggle<CR>")
-TerminalMap("<leader>tn", ":TerminalNew<CR>")
-TerminalMap("<leader>tl", ":TerminalNext<CR>")
-TerminalMap("<leader>th", ":TerminalPrev<CR>")
-TerminalMap("<leader>td", ":TerminalDelete<CR>")
-TerminalMap("<leader>tq", ":TerminalDeleteAll<CR>")
+TerminalMap("<leader>tt", ":MinitermToggle<CR>")
+TerminalMap("<leader>tn", ":MinitermNew<CR>")
+TerminalMap("<leader>tl", ":MinitermNext<CR>")
+TerminalMap("<leader>th", ":MinitermPrev<CR>")
+TerminalMap("<leader>td", ":MinitermDelete<CR>")
+TerminalMap("<leader>tq", ":MinitermDeleteAll<CR>")
 
