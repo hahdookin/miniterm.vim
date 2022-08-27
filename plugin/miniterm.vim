@@ -201,6 +201,27 @@ def TerminalManager(): dict<any>
     enddef
     Res.DeleteAll = DeleteAll
 
+    # Prints out all active terminals
+    # i.e. 0 1 [2] 3
+    # if terminal at index 2 is the current
+    def ListTerminals()
+        if len(Res.terminals) == 0
+            echo "No terminals active"
+            return
+        endif
+        final indices = []
+        for i in range(len(Res.terminals))
+            const term = Res.terminals[i]
+            if term.bufnr == Res.current.bufnr
+                indices->add('[' .. i .. ']')
+            else
+                indices->add(i)
+            endif
+        endfor
+        echo join(indices, ' ')
+    enddef
+    Res.ListTerminals = ListTerminals
+
     return Res
 enddef
 
@@ -223,7 +244,6 @@ def g:GetManager(): dict<any>
     return manager
 enddef
 TerminalMap("<leader>vv", ":echo GetManager().terminals<CR>") # DEBUG
-TerminalMap("<leader>vn", ":echo GetManager().current<CR>")   # DEBUG
 
 command! TerminalToggle     manager.ToggleTerminal() | g:AttachWipeoutHandler(manager.current)
 command! TerminalNew        manager.NewTerminal() | g:AttachWipeoutHandler(manager.current)
@@ -231,6 +251,8 @@ command! TerminalNext       manager.OffsetTerminal(1)
 command! TerminalPrev       manager.OffsetTerminal(-1)
 command! TerminalDeleteAll  manager.DeleteAll()
 command! TerminalDelete     manager.DeleteCurrent()
+
+command! TerminalList       manager.ListTerminals()
 
 TerminalMap("<leader>tt", ":TerminalToggle<CR>")
 TerminalMap("<leader>tn", ":TerminalNew<CR>")
