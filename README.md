@@ -1,6 +1,8 @@
 # miniterm.vim :bookmark:
 - Simple Vim9 toggle-terminal manager
 
+![miniterm.vim screencast](images/miniterm.gif)
+
 ## :hammer: Installation
 :warning: Only supported for vim >= 8.2, not nvim
 
