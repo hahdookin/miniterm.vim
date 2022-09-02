@@ -1,26 +1,8 @@
 vim9script
 
-# How it will work:
-# Press Toggle:
-#   - if first time (no current terminal buffer):
-#       - create a new terminal buffer
-#       - set new buffer as current
-#   - if terminal window is open:
-#       - close terminal window
-#   - else if terminal window isnt open:
-#       - open terminal window
-#
-# Press NewTerminal:
-#   - if first time (no current terminal buffer):
-#       - run "Toggle" logic
-#   - else
-#       - if terminal window is open
-#           - close that terminal window
-#       - open new terminal window
-#
-
-nnoremap <leader>m :source %<CR>
-
+# Configuration
+g:miniterm_proportion = get(g:, "miniterm_proportion", 0.28)
+g:miniterm_position = get(g:, "miniterm_position", "bottom")
 
 # These two functions handle destroying buffers.
 # Slight workaround to event handling while also
@@ -70,7 +52,7 @@ def TerminalManager(): dict<any>
     # Open the current terminal
     def OpenCurrent()
         exec "bot sbuffer " .. Res.current.bufnr
-        exec "resize " .. float2nr(&lines * g:terminal_proportion)
+        exec "resize " .. float2nr(&lines * g:miniterm_proportion)
         setlocal winfixheight
         setlocal nonumber norelativenumber
         Res.current.winnr = win_getid()
@@ -243,7 +225,6 @@ final manager = TerminalManager()
 def g:GetManager(): dict<any>
     return manager
 enddef
-TerminalMap("<leader>vv", ":echo GetManager().terminals<CR>") # DEBUG
 
 command! MinitermToggle     manager.ToggleTerminal() | g:AttachWipeoutHandler(manager.current)
 command! MinitermNew        manager.NewTerminal() | g:AttachWipeoutHandler(manager.current)
