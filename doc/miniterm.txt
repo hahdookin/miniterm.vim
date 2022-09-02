@@ -1,12 +1,11 @@
-*miniterm.txt* Simple terminal manager written in Vim9 script
-
+*miniterm.txt* Simple Vim9 toggle-terminal manager
                        _       _ _                       ~
              _ __ ___ (_)_ __ (_) |_ ___ _ __ _ __ ___   ~
             | '_ ` _ \| | '_ \| | __/ _ \ '__| '_ ` _ \  ~
             | | | | | | | | | | | ||  __/ |  | | | | | | ~
             |_| |_| |_|_|_| |_|_|\__\___|_|  |_| |_| |_| ~
 
-          Simple terminal manager written in Vim9 script.
+	   Simple terminal manager written in Vim9 script
       Includes toggle window support, multiple terminals, etc.
 
 ====================================================================
@@ -22,8 +21,8 @@ CONTENTS                                            *MinitermContents*
 ====================================================================
 1. Intro                                                    *Miniterm*
 
-miniterm.vim is a simple terminal manager written in Vim9 script
-that supports multiple terminals and a togglable terminal window.
+miniterm.vim is a simple Vim9 terminal manager that supports
+multiple terminals and a togglable terminal window.
 
 miniterm.vim uses the concept of a current terminal. The last
 terminal that was opened will be the target of commands that act on
