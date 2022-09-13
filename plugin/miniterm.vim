@@ -55,6 +55,7 @@ def TerminalManager(): dict<any>
         exec "resize " .. float2nr(&lines * g:miniterm_proportion)
         setlocal winfixheight
         setlocal nonumber norelativenumber
+        setlocal hidden
         Res.current.winnr = win_getid()
         Res.current.open = 1
     enddef
@@ -62,7 +63,7 @@ def TerminalManager(): dict<any>
 
     # Close the current terminal
     def CloseCurrent()
-        win_execute(Res.current.winnr, 'close')
+        win_execute(Res.current.winnr, 'close!')
         Res.current.open = 0
     enddef
     Res.CloseCurrent = CloseCurrent
