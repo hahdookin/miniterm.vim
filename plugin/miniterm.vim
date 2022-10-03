@@ -19,7 +19,7 @@ command! MinitermPrev       miniterm.GetManager().OffsetTerminal(-1)
 command! MinitermDeleteAll  miniterm.GetManager().DeleteAll()
 command! MinitermDelete     miniterm.GetManager().DeleteCurrent()
 
-command! MinitermList       manager.GetManager().ListTerminals()
+command! MinitermList       miniterm.GetManager().ListTerminals()
 
 TerminalMap("<leader>tt", ":MinitermToggle<CR>")
 TerminalMap("<leader>tn", ":MinitermNew<CR>")
