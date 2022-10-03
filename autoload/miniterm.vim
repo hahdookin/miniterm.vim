@@ -21,8 +21,25 @@ def Terminal(): dict<any>
         open: 0,
     }
 
-    Res.bufnr = term_start($SHELL, { hidden: 1, term_kill: 'hup' })
+    Res.bufnr = term_start($SHELL, { 
+        hidden: 1, 
+        term_kill: 'hup' 
+    })
     setbufvar(Res.bufnr, "&buflisted", 0)
+
+    def SetName(to: string)
+        var save_buf = bufnr()
+        var save_alt = bufnr("#")
+
+        execute "buffer " .. Res.bufnr
+        execute "silent! file " .. to
+        # TODO: :file creates an alt buffer (sometimes), check for and delete it
+
+        @# = bufname(save_alt)
+        execute "buffer " .. save_buf
+
+    enddef
+    Res.SetName = SetName
 
     return Res
 enddef
@@ -88,6 +105,7 @@ def TerminalManager(): dict<any>
     # Create a new terminal and set it as the current
     def CreateNewCurrent()
         var term = Terminal()
+        term.SetName("MT" .. Res.terminals->len())
         Res.terminals->add(term)
         Res.current = term
     enddef
@@ -158,9 +176,18 @@ def TerminalManager(): dict<any>
         if Res.HasCurrent()
             # Wipe current's buffer
             execute "bwipeout! " .. Res.current.bufnr
+            Res.UpdateTerminalNames()
         endif
     enddef
     Res.DeleteCurrent = DeleteCurrent
+
+    def UpdateTerminalNames()
+        for i in range(len(Res.terminals))
+            var cur = Res.terminals[i]
+            cur.SetName("MT" .. i)
+        endfor
+    enddef
+    Res.UpdateTerminalNames = UpdateTerminalNames
 
     # Wipe all buffers managed by this
     def DeleteAll()
