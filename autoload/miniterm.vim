@@ -9,17 +9,8 @@ vim9script
 # being able to reference the "manager" in the
 # event handling code.
 def g:AttachWipeoutHandler(term: dict<any>)
-    execute "autocmd BufWipeout <buffer=" .. term.bufnr .. "> vim9 g:GetManager().RemoveBufnr(" .. term.bufnr .. ") | g:UpdateState()"
-    execute "autocmd BufDelete <buffer=" .. term.bufnr .. "> vim9 g:GetManager().RemoveBufnr(" .. term.bufnr .. ") | g:UpdateState()"
-enddef
-def g:UpdateState()
-    var m = g:GetManager()
-    if empty(m.terminals)
-        m.current = {}
-    else
-        m.current = m.terminals[0]
-        m.OpenCurrent()
-    endif
+    execute "autocmd BufWipeout <buffer=" .. term.bufnr .. "> vim9 miniterm#GetManager().RemoveBufnr(" .. term.bufnr .. ") | miniterm#GetManager().UpdateState()"
+    execute "autocmd BufDelete <buffer=" .. term.bufnr .. "> vim9 miniterm#GetManager().RemoveBufnr(" .. term.bufnr .. ") | miniterm#GetManager().UpdateState()"
 enddef
 
 # Terminal class
@@ -204,6 +195,16 @@ def TerminalManager(): dict<any>
         echo join(indices, ' ')
     enddef
     Res.ListTerminals = ListTerminals
+
+    def UpdateState()
+        if empty(Res.terminals)
+            Res.current = {}
+        else
+            Res.current = Res.terminals[0]
+            Res.OpenCurrent()
+        endif
+    enddef
+    Res.UpdateState = UpdateState
 
     return Res
 enddef
