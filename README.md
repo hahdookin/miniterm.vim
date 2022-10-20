@@ -20,11 +20,7 @@ git clone https://github.com/hahdookin/miniterm.vim ~/.vim/pack/bundle/start/min
 - `<leader>td` -- Delete current terminal
 - `<leader>tq` -- Delete all terminals
 
----
-
-## :framed_picture: Screenshots / Images
 
 ## :memo: Rationale
 This plugin is part of a plugin suite designed to achieve the functionality of modern IDEs without external dependencies or bloat. Plugins in this suite are meant to be small, extensible, and powerful. 
 
---- 
