@@ -12,8 +12,8 @@ def TerminalMap(map: string, com: string)
     execute "tnoremap <silent> " .. map .. " <C-\\><C-n>" .. com
 enddef
 
-command! MinitermToggle     miniterm.GetManager().ToggleTerminal() | g:AttachWipeoutHandler(miniterm.GetManager().current)
-command! MinitermNew        miniterm.GetManager().NewTerminal() | g:AttachWipeoutHandler(miniterm.GetManager().current)
+command! MinitermToggle     miniterm.GetManager().ToggleTerminal()
+command! MinitermNew        miniterm.GetManager().NewTerminal()
 command! MinitermNext       miniterm.GetManager().OffsetTerminal(1)
 command! MinitermPrev       miniterm.GetManager().OffsetTerminal(-1)
 command! MinitermDeleteAll  miniterm.GetManager().DeleteAll()
