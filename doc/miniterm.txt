@@ -66,8 +66,10 @@ Note: All mappings are for Normal mode and Terminal mode.
     terminals, this will create a new terminal and open it.
     Mapped to: <leader>tt
 
-|:MinitermNew|
+|:MinitermNew| <args>
     Creates a new terminal window, sets it as current, and opens it.
+    Any text after is used a command that is run when the terminal is
+    opened, using |term_sendkeys|.
     Mapped to: <leader>tn
 
 |:MinitermNext|
