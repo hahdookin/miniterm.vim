@@ -5,10 +5,9 @@ vim9script
 # g:miniterm_position = get(g:, "miniterm_position", "bottom")
 
 # Terminal class
-def Terminal(): dict<any>
+def Terminal(cmd = ''): dict<any>
     final self: dict<any> = {
         bufnr: 0,
-        winnr: 0,
     }
 
     self.bufnr = term_start($SHELL, { 
@@ -16,6 +15,9 @@ def Terminal(): dict<any>
         term_kill: 'hup' 
     })
     setbufvar(self.bufnr, "&buflisted", 0)
+    if cmd != ''
+        term_sendkeys(self.bufnr, $"{cmd}\<CR>")
+    endif
 
     return self
 enddef
@@ -64,8 +66,8 @@ def TerminalManager(): dict<any>
         self.terminals = self.terminals->filter((i, v) => v.bufnr != bufnr)
     }
 
-    self.AddTerm = (): dict<any> => {
-        var term = Terminal()
+    self.AddTerm = (cmd = ''): dict<any> => {
+        var term = Terminal(cmd)
         self.terminals->add(term)
         return term
     }
@@ -81,14 +83,14 @@ def TerminalManager(): dict<any>
 #           - close that terminal window
 #       - create new terminal buffer
 #       - open new terminal window
-    self.NewTerminal = () => {
+    self.NewTerminal = (cmd = '') => {
         if !self.HasCurrent()
             self.ToggleTerminal()
         else
             if self.IsTermOpen(self.current)
                 self.CloseTerminal(self.current)
             endif
-            self.current = self.AddTerm()
+            self.current = self.AddTerm(cmd)
 
             self.OpenTerminal(self.current)
         endif
@@ -170,7 +172,6 @@ def TerminalManager(): dict<any>
                 return term.bufnr == self.current.bufnr ? $"[{idx}]" : $"{idx}"
             })->join(' ')
         endif
-
     }
 
     return self

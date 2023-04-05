@@ -12,12 +12,12 @@ def TerminalMap(map: string, com: string)
     execute "tnoremap <silent> " .. map .. " <C-\\><C-n>" .. com
 enddef
 
-command! MinitermToggle     miniterm.GetManager().ToggleTerminal()
-command! MinitermNew        miniterm.GetManager().NewTerminal()
-command! MinitermNext       miniterm.GetManager().OffsetTerminal(1)
-command! MinitermPrev       miniterm.GetManager().OffsetTerminal(-1)
-command! MinitermDeleteAll  miniterm.GetManager().DeleteAll()
-command! MinitermDelete     miniterm.GetManager().DeleteCurrent()
+command! MinitermToggle       miniterm.GetManager().ToggleTerminal()
+command! -nargs=* MinitermNew miniterm.GetManager().NewTerminal(<q-args>)
+command! MinitermNext         miniterm.GetManager().OffsetTerminal(1)
+command! MinitermPrev         miniterm.GetManager().OffsetTerminal(-1)
+command! MinitermDeleteAll    miniterm.GetManager().DeleteAll()
+command! MinitermDelete       miniterm.GetManager().DeleteCurrent()
 
 command! MinitermList       miniterm.GetManager().ListTerminals()
 
