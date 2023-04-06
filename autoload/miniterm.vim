@@ -85,7 +85,7 @@ def TerminalManager(): dict<any>
 #       - open new terminal window
     self.NewTerminal = (cmd = '') => {
         if !self.HasCurrent()
-            self.ToggleTerminal()
+            self.ToggleTerminal(cmd)
         else
             if self.IsTermOpen(self.current)
                 self.CloseTerminal(self.current)
@@ -103,9 +103,9 @@ def TerminalManager(): dict<any>
 #       - close terminal window
 #   - else if terminal window isnt open:
 #       - open terminal window
-    self.ToggleTerminal = () => {
+    self.ToggleTerminal = (cmd = '') => {
         if !self.HasCurrent()
-            self.current = self.AddTerm()
+            self.current = self.AddTerm(cmd)
         endif
         if self.IsTermOpen(self.current)
             self.CloseTerminal(self.current)
