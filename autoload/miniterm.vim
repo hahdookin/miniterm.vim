@@ -35,11 +35,12 @@ def TerminalManager(): dict<any>
     }
 
     self.OpenTerminal = (term: dict<any>) => {
-        exec $"bot sbuffer {term.bufnr}"
-        exec $"resize {float2nr(&lines * g:miniterm_proportion)}"
-        setlocal winfixheight
-        setlocal nonumber norelativenumber
-        setlocal hidden
+        self.ListTerminals()
+        exec $"silent! bot sbuffer {term.bufnr}"
+        exec $"silent! resize {float2nr(&lines * g:miniterm_proportion)}"
+        silent! setlocal winfixheight
+        silent! setlocal nonumber norelativenumber
+        silent! setlocal hidden
     }
 
     self.CloseTerminal = (term: dict<any>) => {

@@ -5,11 +5,12 @@ import autoload "miniterm.vim"
 # Configuration
 g:miniterm_proportion = get(g:, "miniterm_proportion", 0.28)
 g:miniterm_position = get(g:, "miniterm_position", "bottom")
+g:miniterm_dont_list = get(g:, "miniterm_dont_list", false)
 
 # Helper to map in normal and terminal mode
 def TerminalMap(map: string, com: string)
-    execute "nnoremap <silent> " .. map .. " " .. com
-    execute "tnoremap <silent> " .. map .. " <C-\\><C-n>" .. com
+    execute $"nnoremap <silent> {map} {com}"
+    execute $"tnoremap <silent> {map} <C-\\><C-n>{com}"
 enddef
 
 command! MinitermToggle       miniterm.GetManager().ToggleTerminal()
