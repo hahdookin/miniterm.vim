@@ -52,7 +52,9 @@ Use the |:MinitermList| command to view the terminals list.
 <leader>tt ................ Toggle current terminal window on/off
 <leader>tn ................ Create new current terminal
 <leader>th ................ Make previous terminal current
+[t ........................ Make previous terminal current
 <leader>tl ................ Make next terminal current
+]t ........................ Make next terminal current
 <leader>td ................ Delete current terminal
 <leader>tq ................ Delete all terminals
 
@@ -76,11 +78,13 @@ Note: All mappings are for Normal mode and Terminal mode.
     Sets the next terminal in the terminal list to the current. Will
     open the terminal window if its closed.
     Mapped to: <leader>tl
+    Mapped to: ]t
 
 |:MinitermPrev|
     Sets the previous terminal in the terminal list to the current.
     Will open the terminal window if its closed.
     Mapped to: <leader>th
+    Mapped to: [t
 
 |:MinitermDelete|
     Deletes the buffer associated with the current terminal and
@@ -104,8 +108,7 @@ can be reached at:
     * Email ............. ChrisPaneCS@gmail.com
     * Website ........... https://chrispane.dev
 
-This plugin is one part of the mission to achieve the most with the
-least in terms of Vim plugins.
+If you have any issues, feel free to reach out.
 
 --------------------------------------------------------------------
  vim:tw=68:ts=8:ft=help:noet:nospell
