@@ -11,7 +11,7 @@ g:miniterm_dont_map = get(g:, "miniterm_dont_map", false)
 # Helper to map in normal and terminal mode
 def TerminalMap(map: string, com: string)
     execute $"nnoremap <silent> {map} {com}"
-    execute $"tnoremap <silent> {map} <C-\\><C-n>{com}"
+    execute $"tnoremap <silent> {map} <C-w>{com}"
 enddef
 
 command! MinitermToggle       miniterm.GetManager().ToggleTerminal()
